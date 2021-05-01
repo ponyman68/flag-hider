@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     flag hider
-// @version  1
+// @version  2
 // @grant    none
 // @author       (You)
 // @match        *://boards.4channel.org/mlp*
