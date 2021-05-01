@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name     flag hider
-// @version  2
+// @version  3
 // @grant    none
 // @author       (You)
 // @match        *://boards.4channel.org/mlp*
+// @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @run-at       document-start
 // ==/UserScript==
 
@@ -45,6 +46,24 @@ function installMutationObserver(root) {
     });
     observer.observe(root, {childList: true, subtree: true, attributes: true});
 }
+function installStupidObserver(dbUtilsProm,root) {
+    if (!("MutationObserver" in window)) {
+        window.MutationObserver = window.WebKitMutationObserver || window.MozMutationObserver;
+    }
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function(m) {
+            m.addedNodes.forEach(function(n){if(n.tagName == "DIV") {
+                    $(n).find("span").each(function(idx,node) {checkAndDeleteSingle(node);});
+                }
+            });
+        });
+    });
+    observer.observe(document, {childList: true, subtree: true, attributes: true});
+}
 
+//dom parser
 checkAndDeleteAll();
+//4chan x
 installMutationObserver(document);
+//4chan native
+window.setTimeout(function() { installStupidObserver(); }, 100);
