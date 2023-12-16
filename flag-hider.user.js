@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name     flag hider
-// @version  3
+// @version  4
 // @grant    none
 // @author       (You)
 // @match        *://boards.4channel.org/mlp*
+// @match        *://boards.4chan.org/mlp*
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @run-at       document-start
 // ==/UserScript==
